@@ -15,276 +15,17 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <!-- theme css -->
     <link href="static/css/dark/style.css" rel="stylesheet">
-    <style>
-        :root {
-            --glass-bg: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(255, 255, 255, 0.22);
-            --glass-shadow: 0 12px 45px rgba(8, 10, 24, 0.38);
-            --cyan: #57f5ff;
-            --violet: #9d6dff;
-        }
-
-        body.dark-bg {
-            position: relative;
-            background: radial-gradient(circle at 20% 20%, #1c2950 0%, #0b1023 48%, #04060f 100%);
-            overflow-x: hidden;
-        }
-
-        body.dark-bg::before,
-        body.dark-bg::after {
-            content: "";
-            position: fixed;
-            width: 48vmax;
-            height: 48vmax;
-            border-radius: 50%;
-            z-index: -2;
-            filter: blur(70px);
-            opacity: 0.35;
-            animation: orbFloat 16s ease-in-out infinite alternate;
-            pointer-events: none;
-        }
-
-        body.dark-bg::before {
-            background: #5f59ff;
-            top: -12vmax;
-            left: -8vmax;
-        }
-
-        body.dark-bg::after {
-            background: #10c2ff;
-            right: -10vmax;
-            bottom: -16vmax;
-            animation-delay: 2s;
-        }
-
-        @keyframes orbFloat {
-            0% { transform: translate3d(0, 0, 0) scale(1); }
-            100% { transform: translate3d(25px, -30px, 0) scale(1.08); }
-        }
-
-        .space-grid {
-            position: fixed;
-            inset: 0;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 44px 44px;
-            mask-image: radial-gradient(circle at center, rgba(0,0,0,1), rgba(0,0,0,0.5), transparent 78%);
-            z-index: -1;
-            pointer-events: none;
-            animation: gridDrift 24s linear infinite;
-        }
-
-        @keyframes gridDrift {
-            from { transform: translateY(0px); }
-            to { transform: translateY(44px); }
-        }
-
-        .main-header .navbar,
-        .home-banner .typo-box,
-        .feature-box-1,
-        .resume-box,
-        .portfolio-box,
-        .blog-post,
-        .contact-info,
-        .contact-form,
-        .footer {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-        }
-
-        .main-header .navbar {
-            margin-top: 12px;
-            border-radius: 14px;
-            transition: .45s ease;
-        }
-
-        .main-header .navbar:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 16px 40px rgba(52, 77, 173, .35);
-        }
-
-        .navbar-brand,
-        .nav-link span,
-        .section-title h2 span,
-        .sm-title h3,
-        .typo-box h1 {
-            text-shadow: 0 0 12px rgba(87, 245, 255, .35);
-        }
-
-        .home-banner .typo-box {
-            border-radius: 20px;
-            padding: 30px;
-            transform-style: preserve-3d;
-            animation: cardBreathe 5s ease-in-out infinite;
-        }
-
-        @keyframes cardBreathe {
-            0%,100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .home-avatar-box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 420px;
-        }
-
-        .home-avatar-in {
-            width: 340px;
-            height: 340px;
-            border-radius: 50%;
-            border: 1px solid rgba(255,255,255,.35);
-            background: radial-gradient(circle at 30% 30%, rgba(87,245,255,.35), rgba(157,109,255,.15), transparent 65%);
-            box-shadow: inset 0 0 55px rgba(255,255,255,.12), 0 0 50px rgba(99,126,255,.35);
-            animation: pulse3d 4.6s ease-in-out infinite;
-            position: relative;
-        }
-
-        .home-avatar-in::before,
-        .home-avatar-in::after {
-            content: "";
-            position: absolute;
-            inset: -12px;
-            border: 1px dashed rgba(255,255,255,.2);
-            border-radius: 50%;
-            animation: spinRing 13s linear infinite;
-        }
-
-        .home-avatar-in::after {
-            inset: -28px;
-            animation-duration: 18s;
-            animation-direction: reverse;
-        }
-
-        .home-avatar-in img { display: none !important; }
-
-        @keyframes spinRing {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes pulse3d {
-            0%, 100% { transform: translateZ(0) scale(1); }
-            50% { transform: translateZ(20px) scale(1.05); }
-        }
-
-        .feature-box-1,
-        .portfolio-box,
-        .blog-post,
-        .contact-info,
-        .contact-form,
-        .resume-box,
-        .about-left,
-        .about-text,
-        .tag-text {
-            border-radius: 16px;
-            transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
-        }
-
-        .feature-box-1:hover,
-        .portfolio-box:hover,
-        .blog-post:hover,
-        .contact-info:hover,
-        .contact-form:hover,
-        .resume-box:hover,
-        .about-left:hover,
-        .about-text:hover,
-        .tag-text:hover {
-            transform: translateY(-8px) rotateX(2deg);
-            border-color: rgba(87, 245, 255, .52);
-            box-shadow: 0 16px 35px rgba(25, 35, 88, .5);
-        }
-
-        .portfolio-img,
-        .blog-img,
-        .about-left {
-            overflow: hidden;
-            border-radius: 14px;
-        }
-
-        .portfolio-img img,
-        .blog-img img,
-        .about-left img {
-            transition: transform .6s ease, filter .5s ease;
-            filter: saturate(1.1);
-        }
-
-        .portfolio-box:hover .portfolio-img img,
-        .blog-post:hover .blog-img img,
-        .about-left:hover img {
-            transform: scale(1.08) rotate(1deg);
-            filter: saturate(1.3) brightness(1.06);
-        }
-
-        .px-btn,
-        .px-btn-arrow,
-        .send button {
-            position: relative;
-            overflow: hidden;
-            transition: transform .3s ease, box-shadow .3s ease;
-        }
-
-        .px-btn::before,
-        .px-btn-arrow::before,
-        .send button::before {
-            content: "";
-            position: absolute;
-            top: -110%;
-            left: -20%;
-            width: 35%;
-            height: 320%;
-            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, .7), transparent);
-            transform: rotate(24deg);
-            transition: .7s;
-        }
-
-        .px-btn:hover::before,
-        .px-btn-arrow:hover::before,
-        .send button:hover::before { left: 120%; }
-
-        .px-btn:hover,
-        .px-btn-arrow:hover,
-        .send button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(59, 97, 255, .35);
-        }
-
-        .form-control {
-            border: 1px solid rgba(255,255,255,.28) !important;
-            background: rgba(6, 11, 28, .44) !important;
-            color: #e9f6ff !important;
-        }
-
-        .form-control::placeholder { color: rgba(218, 232, 255, .75) !important; }
-
-        .footer { border-radius: 15px 15px 0 0; }
-
-        [data-animate] {
-            opacity: 0;
-            transform: translateY(28px) scale(.98);
-            transition: all .8s cubic-bezier(.19,1,.22,1);
-        }
-
-        [data-animate].show {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-    </style>
 </head>
 <!-- Body Start -->
 
 <body class="dark-bg">
-    <div class="space-grid" aria-hidden="true"></div>
     <!-- page loading -->
     <div id="loading">
         <div class="load-circle"><span class="one"></span></div>
     </div>
     <!-- End -->
     <!-- Header -->
-    <header class="main-header" data-animate>
+    <header class="main-header">
         <nav class="navbar header-nav header-white header-transparent navbar-expand-lg one-page-nav">
             <div class="container">
                 <!-- Brand -->
@@ -316,7 +57,7 @@
     <main>
         <!-- section -->
         <section id="home" data-scroll-index="0" class="home-banner">
-            <div class="social-share nav d-none d-lg-flex" data-animate>
+            <div class="social-share nav d-none d-lg-flex">
                 <a href="#">
                     <i class="bi bi-facebook"></i>
                 </a>
@@ -335,7 +76,7 @@
             </div>
             <div class="container">
                 <div class="row min-vh-100 align-items-center">
-                    <div class="col-lg-6" data-animate>
+                    <div class="col-lg-6">
                         <div class="typo-box">
                             <h6>Hi There, I'm</h6>
                             <h1 class="font-alt">Devansh Saxena</h1>
@@ -347,7 +88,7 @@ I enjoy building simple projects and learning new concepts step by step.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6" data-animate>
+                    <div class="col-lg-6">
                         <div class="home-avatar-box">
                             <div class="home-avatar-in">
                                 <img src="static/img/home-banner.png" title="" alt="">
@@ -376,7 +117,7 @@ I enjoy building simple projects and learning new concepts step by step.</p>
             </div>
             <div class="container">
                 <div class="row align-items-center flex-row-reverse">
-                    <div class="col-lg-7 ps-xl-5" data-animate>
+                    <div class="col-lg-7 ps-xl-5">
                         <div class="about-row about-text">
                             <div class="sm-title">
                                 <h3>About Me</h3>
@@ -386,28 +127,28 @@ I enjoy building simple projects and learning new concepts step by step.</p>
 
 I believe in consistency, discipline, and continuous growth, and I am working step by step toward becoming a skilled AI Engineer.</p>
                         </div>
-
-                        <div class="about-row tag-text mt-4">
+                        
+                        <div class="about-row tag-text">
                             <div class="sm-title">
                                 <h3>Technologies and Skills</h3>
                             </div>
                             <div class="nav">
                                 <span>Python</span>
                                 <span>Java</span>
-
+                                
                                 <span>DSA</span>
                                 <span>HTML</span>
                                 <span>CSS</span>
-
+                               
                                 <span>Basic AI/ML</span>
                                 <span>AI Ethics</span>
                                 <span>Problem Solving</span>
                                 <span></span>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-5" data-animate>
+                       
+                               
+                    <div class="col-lg-5">
                         <div class="about-left">
                             <img src="static/img/about-me.png" title="" alt="">
                         </div>
@@ -423,7 +164,7 @@ I believe in consistency, discipline, and continuous growth, and I am working st
             </div>
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6 text-center" data-animate>
+                    <div class="col-lg-6 text-center">
                         <div class="section-title">
                             <h2><span>My Services</span></h2>
                         </div>
@@ -431,7 +172,7 @@ I believe in consistency, discipline, and continuous growth, and I am working st
                 </div>
                 <div class="row">
                     <!-- feaure box -->
-                    <div class="col-sm-6 col-lg-4 my-3" data-animate>
+                    <div class="col-sm-6 col-lg-4 my-3">
                         <div class="feature-box-1">
                             <div class="icon hexagon">
                                 <i class="bi bi-laptop"></i>
@@ -444,7 +185,7 @@ I believe in consistency, discipline, and continuous growth, and I am working st
                     </div>
                     <!-- / -->
                     <!-- feaure box -->
-                    <div class="col-sm-6 col-lg-4 my-3" data-animate>
+                    <div class="col-sm-6 col-lg-4 my-3">
                         <div class="feature-box-1">
                             <div class="icon hexagon">
                                 <i class="bi bi-layout-text-window"></i>
@@ -457,7 +198,7 @@ I believe in consistency, discipline, and continuous growth, and I am working st
                     </div>
                     <!-- / -->
                     <!-- feaure box -->
-                    <div class="col-sm-6 col-lg-4 my-3" data-animate>
+                    <div class="col-sm-6 col-lg-4 my-3">
                         <div class="feature-box-1">
                             <div class="icon hexagon">
                                 <i class="bi bi-layers"></i>
@@ -470,7 +211,7 @@ I believe in consistency, discipline, and continuous growth, and I am working st
                     </div>
                     <!-- / -->
                     <!-- feaure box -->
-                    <div class="col-sm-6 col-lg-4 my-3" data-animate>
+                    <div class="col-sm-6 col-lg-4 my-3">
                         <div class="feature-box-1">
                             <div class="icon hexagon">
                                 <i class="bi bi-phone"></i>
@@ -483,7 +224,7 @@ I believe in consistency, discipline, and continuous growth, and I am working st
                     </div>
                     <!-- / -->
                     <!-- feaure box -->
-                    <div class="col-sm-6 col-lg-4 my-3" data-animate>
+                    <div class="col-sm-6 col-lg-4 my-3">
                         <div class="feature-box-1">
                             <div class="icon hexagon">
                                 <i class="bi bi-bug"></i>
@@ -496,7 +237,7 @@ I believe in consistency, discipline, and continuous growth, and I am working st
                     </div>
                     <!-- / -->
                     <!-- feaure box -->
-                    <div class="col-sm-6 col-lg-4 my-3" data-animate>
+                    <div class="col-sm-6 col-lg-4 my-3">
                         <div class="feature-box-1">
                             <div class="icon hexagon">
                                 <i class="bi bi-command"></i>
@@ -519,14 +260,14 @@ I believe in consistency, discipline, and continuous growth, and I am working st
             </div>
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6 text-center" data-animate>
+                    <div class="col-lg-6 text-center">
                         <div class="section-title">
                             <h2><span>EVOLUTION & MILESTONES</span></h2>
                         </div>
                     </div>
                 </div>
                 <div class="row justify-content-center pt-3">
-                    <div class="col-lg-10" data-animate>
+                    <div class="col-lg-10">
                         <div class="resume-box">
                             <ul>
                                 <li class="row g-0">
@@ -552,43 +293,72 @@ I believe in consistency, discipline, and continuous growth, and I am working st
                                         <span>- Shajahanpur , india</span>
                                     </div>
                                 </li>
+
+
+
+
+                                                          
+
+
+
+
+
+
+
+
+
+                             
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
+
+                              
         </section>
         <!-- End Resume -->
 
-        <!-- Portfolio -->
+<!-- Portfolio -->
         <section id="work" data-scroll-index="3" class="section portfolio-section">
             <div class="placeholder">
                 <h5>Certificates</h5>
             </div>
             <div class="container">
                 <div class="row justify-content-center mb-3">
-                    <div class="col-lg-6 text-center" data-animate>
+                    <div class="col-lg-6 text-center">
                         <div class="section-title">
                             <h2><span>My Certificates</span></h2>
                         </div>
                     </div>
                 </div>
                 <div class="row g-3 lightbox-gallery">
-                    <div class="col-lg-6" data-animate>
+                    <div class="col-lg-6">
                         <div class="portfolio-box row g-0">
                             <div class="portfolio-img col-sm-6 col-lg-7">
+                             
+                                    
+
+
+                                </a>
                                 <img src="static/img/portfolio-01.png" title="" alt="">
                             </div>
                             <div class="portfolio-info col-sm-6 col-lg-5">
                                 <h2>GenAI</h2>
                                 <p>“Completed ‘Career Essentials in Generative AI’ by Microsoft & LinkedIn, gaining hands-on skills in Microsoft Copilot, Generative AI, and Responsible AI.”.</p>
-                                <div class="nav"><span>Microsoft - Linked Learing</span></div>
-                            </div>
+                               
+   
+<div class="nav"><span>Microsoft - Linked Learing</span></div>
+                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6" data-animate>
+                    <div class="col-lg-6">
                         <div class="portfolio-box row g-0">
                             <div class="portfolio-img col-sm-6 col-lg-7">
+                                
+                                </a>
                                 <img src="static/img/portfolio-03.png" title="" alt="">
                             </div>
                             <div class="portfolio-info col-sm-6 col-lg-5">
@@ -599,50 +369,59 @@ Code faster and smarter with AI..</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6" data-animate>
+                    <div class="col-lg-6">
                         <div class="portfolio-box row g-0 flex-row-lg-reverse">
                             <div class="portfolio-img col-sm-6 col-lg-7">
+                              
+
+
+
+                                </a>
                                 <img src="static/img/portfolio-02.png" title="" alt="">
                             </div>
                             <div class="portfolio-info col-sm-6 col-lg-5">
 
-                                <h2>Responsible AI</h2>
+ <h2>Responsible AI</h2>
                                 <p>Learned to apply responsible AI practices using Google Cloud tools.
 Build fair, safe, and transparent AI systems..</p>
                                 <div class="nav"><span>Google - SkillUp </span></div>
-
+                                
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6" data-animate>
-                        <div class="portfolio-box row g-0 flex-row-lg-reverse">
-                            <!-- Image section -->
-                            <div class="portfolio-img col-sm-6 col-lg-7">
-                                <a href="certificates.html" target="_blank">
-                                    <img src="static/img/cert.png" title="Certificate Image" alt="Certificate">
-                                </a>
-                            </div>
+                   <div class="col-lg-6">
+    <div class="portfolio-box row g-0 flex-row-lg-reverse">
+        <!-- Image section -->
+        <div class="portfolio-img col-sm-6 col-lg-7">
+            <a href="certificates.html" target="_blank">
+                <img src="static/img/cert.png" title="Certificate Image" alt="Certificate">
+            </a>
+        </div>
 
-                            <!-- Text/info section -->
-                            <div class="portfolio-info col-sm-6 col-lg-5">
-                                <a href="certificates.html" target="_blank" style="text-decoration: none; color: inherit;">
-                                    <h2>My Certificates & Milestones</h2>
-                                    <p>Each certificate reflects my dedication and hard work. Explore to see my journey and achievements.</p>
-                                </a>
-                                <a href="certificates.html" target="_blank" style="text-decoration: none;">
-                                    <div class="nav" style="background-color: #000; color: #fff; display: inline-block; padding: 5px 10px; border-radius: 5px;">
-                                        <span>CLICK - HERE</span>
-                                    </div>
-                                </a>
+        <!-- Text/info section -->
+        <div class="portfolio-info col-sm-6 col-lg-5">
+            <a href="certificates.html" target="_blank" style="text-decoration: none; color: inherit;">
+                <h2>My Certificates & Milestones</h2>
+                <p>Each certificate reflects my dedication and hard work. Explore to see my journey and achievements.</p>
+            </a>
+            <a href="certificates.html" target="_blank" style="text-decoration: none;">
+                <div class="nav" style="background-color: #000; color: #fff; display: inline-block; padding: 5px 10px; border-radius: 5px;">
+                    <span>CLICK - HERE</span>
+  </div>
+            </a>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
         </section>
         <!-- End Portfolio -->
 
+
+
+
+       
         <!-- Blog -->
         <section id="blog" data-scroll-index="4" class="section">
             <div class="placeholder">
@@ -650,14 +429,14 @@ Build fair, safe, and transparent AI systems..</p>
             </div>
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6 text-center" data-animate>
+                    <div class="col-lg-6 text-center">
                         <div class="section-title">
                             <h2><span>PROJECTS</span></h2>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 my-3" data-animate>
+                    <div class="col-lg-4 my-3">
                         <div class="blog-post">
                             <div class="blog-img">
                                 <div class="data">
@@ -679,8 +458,8 @@ Build fair, safe, and transparent AI systems..</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 my-3" data-animate>
+                     </div>
+                      <div class="col-lg-4 my-3">
                         <div class="blog-post">
                             <div class="blog-img">
                                 <div class="data">
@@ -703,7 +482,7 @@ Build fair, safe, and transparent AI systems..</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 my-3" data-animate>
+                    <div class="col-lg-4 my-3">
                         <div class="blog-post">
                             <div class="blog-img">
                                 <div class="data">
@@ -728,7 +507,7 @@ Build fair, safe, and transparent AI systems..</p>
                     </div>
                 </div>
             </div>
-
+                   
         </section>
         <!-- End Blog -->
         <!-- Contact -->
@@ -738,14 +517,14 @@ Build fair, safe, and transparent AI systems..</p>
             </div>
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6 text-center" data-animate>
+                    <div class="col-lg-6 text-center">
                         <div class="section-title">
                             <h2><span>Contact Me</span></h2>
                         </div>
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-lg-4 my-3" data-animate>
+                    <div class="col-lg-4 my-3">
                         <div class="contact-info">
                             <div class="contact-name">
                                 <div class="sm-title">
@@ -781,7 +560,7 @@ Build fair, safe, and transparent AI systems..</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8 my-3" data-animate>
+                    <div class="col-lg-8 my-3">
                         <div class="contact-form">
                             <div class="sm-title">
                                 <h3>Get In Touch</h3>
@@ -819,10 +598,10 @@ Build fair, safe, and transparent AI systems..</p>
                             </form>
                         </div>
                     </div>
-                    <div class="col-12 mt-4" data-animate>
+                    <div class="col-12 mt-4">
                         <div class="p-3 dark-bg shadow grayscale">
                             <div class="ratio ratio-21x9">
-
+                             
                             </div>
                         </div>
                     </div>
@@ -832,7 +611,7 @@ Build fair, safe, and transparent AI systems..</p>
         <!-- End Contact -->
     </main>
     <!-- Footer -->
-    <footer class="footer" data-animate>
+    <footer class="footer">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 my-2">
@@ -864,52 +643,6 @@ Build fair, safe, and transparent AI systems..</p>
     <script src="static/plugin/one-page/scrollIt.min.js"></script>
     <script src="static/js/custom.js"></script>
     <script src="static/js/mail_send.js"></script>
-    <script>
-        (() => {
-            const revealEls = document.querySelectorAll('[data-animate]');
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('show');
-                        io.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.12 });
-            revealEls.forEach((el) => io.observe(el));
-
-            const targets = document.querySelectorAll('.typo-box h1, .typo-box h2, .section-title h2 span, .sm-title h3, .blog-info h6 a, .portfolio-info h2');
-            targets.forEach((el) => {
-                const text = el.textContent;
-                if (!text.trim()) return;
-                el.setAttribute('data-text', text);
-                el.textContent = '';
-                [...text].forEach((ch, i) => {
-                    const span = document.createElement('span');
-                    span.textContent = ch;
-                    span.style.opacity = '0';
-                    span.style.transform = 'translateY(8px)';
-                    span.style.display = 'inline-block';
-                    span.style.transition = 'all .4s ease';
-                    span.style.transitionDelay = `${i * 24}ms`;
-                    el.appendChild(span);
-                });
-            });
-
-            const textIO = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.querySelectorAll('span').forEach((span) => {
-                            span.style.opacity = '1';
-                            span.style.transform = 'translateY(0)';
-                        });
-                        textIO.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.4 });
-
-            targets.forEach((el) => textIO.observe(el));
-        })();
-    </script>
     <!-- end -->
 </body>
 <!-- Body End -->
